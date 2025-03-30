@@ -35,6 +35,7 @@ class PagesController extends Controller
     {
         $userData = $this->getUserData();
         $data = ['name' => $userData['name'][0], 'styles' => 'myAdsStyle', 'title' => 'B7Store - Meus anúncios', 'advertises' => $userData['user']->advertises];
+        // dd($data['advertises']);
         return view('myAds', $data);
     }
 }

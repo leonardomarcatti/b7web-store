@@ -29,12 +29,16 @@
     <div class="ads-title">Anúncios recentes</div>
     <div class="ads-area">
         @foreach($advertiseList as $item)
-        <x-singleAdvertise
-            :img="$item['img']"
+        @foreach($item->photos as $photo)
+        @if($photo->mainPhoto)
+        <x-ad
+            img="{{$photo->url}}"
             title="{{$item['title']}}"
             value="150"
             :price="$item['price']"
             :href="$item['href']" />
+        @endif
+        @endforeach
         @endforeach
     </div>
 </div>

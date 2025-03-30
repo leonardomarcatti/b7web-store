@@ -6,10 +6,12 @@
     <div class="myAds-area">
         <h3 class="myAds-title">Meus Anúncios</h3>
         <div class="myAds-ads-area">
-
             @foreach($advertises as $ad)
-            <x-ad title="{{$ad->title}}" price="{{$ad->price}}" :images="$ad->photos" />
-
+            @foreach($ad->photos as $photo)
+            @if($photo->mainPhoto)
+            <x-ad title="{{$ad->title}}" price="{{$ad->price}}" :img="$photo->url" buttons />
+            @endif
+            @endforeach
             @endforeach
         </div>
     </div>
