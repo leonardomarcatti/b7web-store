@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class PhotosModel extends Model
 {
     protected $table = 'advertise_photos';
-    protected $fillable = ['url', 'mainPhoto'];
+    protected $fillable = ['url', 'mainPhoto', 'advertise_id'];
 
     public function advertise(): BelongsTo
     {

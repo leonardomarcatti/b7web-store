@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use App\Models\StatesModel;
-use App\Models\PhotosModel;
+use App\Models\AddressesModel;
+use App\Models\AdvertisesModel;
+use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
@@ -35,7 +37,17 @@ class PagesController extends Controller
     {
         $userData = $this->getUserData();
         $data = ['name' => $userData['name'][0], 'styles' => 'myAdsStyle', 'title' => 'B7Store - Meus anúncios', 'advertises' => $userData['user']->advertises];
-        // dd($data['advertises']);
         return view('myAds', $data);
+    }
+
+    public function deleteAd(Request $r): string
+    {
+        $id =  $r->id;
+
+        if (AdvertisesModel::find($id)) {
+            return 'ok';
+        }
+
+        return 'error';
     }
 }

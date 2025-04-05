@@ -60,9 +60,6 @@ header {
   text-align: center;
 }
 
-.my-account img {
-  margin-right: 10px;
-}
 
 .announce-now {
   text-decoration: none;
@@ -192,6 +189,27 @@ main {
   margin-top: 128px;
   width: 100%;
 }
+
+.pill {
+    padding: 5px 10px;
+    background-color: teal;
+    border-radius: 5px;
+    color: white;
+}
+
+.my-ad-pill {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+
+.my-ad-item {
+  border: 1.5px solid #e7e9ed;
+  width: 100%;
+  aspect-ratio: 1/1;
+  position:  relative;
+}
+
 .categories-area .title {
   margin-bottom: 18px;
   color: #3c4952;
@@ -404,9 +422,7 @@ footer span:last-child {
   .header-area-right {
     justify-content: flex-end;
   }
-  .my-account {
-    display: none;
-  }
+
   .menu-icon {
     display: block;
     margin-left: 20px;

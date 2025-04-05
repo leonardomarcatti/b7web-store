@@ -9,6 +9,7 @@ Route::controller(PagesController::class)->group(function () {
         Route::get('/', 'index')->name('home');
         Route::get('/myProfile', 'myProfile')->name('myProfile');
         Route::get('/myAds', 'myAds')->name('myAds');
+        Route::get('/ads/delete/{id}', 'deleteAd')->name('deleteAd');
     });
 });
 
@@ -18,6 +19,8 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('/login', 'login')->name('login');
     Route::get('/forgotPassword', 'forgotPassword')->name('forgotPassword');
     Route::post('/loginAction', 'loginAction')->name('loginAction');
-    Route::get('/logout', 'logout')->name('logout')->middleware('auth');
-    Route::post('/update', 'update')->name('update')->middleware('auth');
+    Route::middleware('auth')->group(function () {
+        Route::get('/logout', 'logout')->name('logout');
+        Route::post('/update', 'update')->name('update');
+    });
 });

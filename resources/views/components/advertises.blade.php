@@ -36,6 +36,7 @@
             title="{{$item['title']}}"
             value="150"
             :price="$item['price']"
+            user="{{($item->user->id == Auth::user()->id) ? true : false}}"
             :href="$item['href']" />
         @endif
         @endforeach
