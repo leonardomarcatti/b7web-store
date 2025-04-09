@@ -9,7 +9,7 @@ Route::controller(PagesController::class)->group(function () {
         Route::get('/', 'index')->name('home');
         Route::get('/myProfile', 'myProfile')->name('myProfile');
         Route::get('/myAds', 'myAds')->name('myAds');
-        Route::get('/ads/delete/{id}', 'deleteAd')->name('deleteAd');
+        Route::get('/myAds/delete/{id}', 'deleteAd')->name('deleteAd');
     });
 });
 

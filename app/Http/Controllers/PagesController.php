@@ -42,12 +42,15 @@ class PagesController extends Controller
 
     public function deleteAd(Request $r): string
     {
+        \dd($r->id);
         $id =  $r->id;
+        $ad = AdvertisesModel::where('id', $id)->where('user_id', Auth::user()->id)->first();
 
-        if (AdvertisesModel::find($id)) {
-            return 'ok';
+        if ($ad) {
+            $ad->delete();
+            return back();
         }
 
-        return 'error';
+        return \redirect()->route('home');
     }
 }

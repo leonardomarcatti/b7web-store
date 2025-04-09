@@ -6,7 +6,7 @@
         @if(isset($buttons))
         <div class="ad-buttons">
             <div class="ad-button">
-                <a href="{{route('deleteAd', ['id' => $id])}}">
+                <a href="{{route('deleteAd', ['id' => $id])}}" class="delAd">
                     <img src="temp/icons/deleteIcon.png" />
                 </a>
             </div>
