@@ -9,10 +9,7 @@
 }
 .main-photo {
   width: 100%;
-  aspect-ratio: 13/10;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  border-radius: 15px;
 }
 .secundary-photos {
   width: 100%;
@@ -201,9 +198,6 @@
   .ad-area-left {
     width: 90%;
     margin: 0 auto;
-  }
-  .main-photo {
-    width: 100%;
   }
   .secundary-photos img {
     width: 72px;

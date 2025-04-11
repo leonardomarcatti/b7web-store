@@ -7,3 +7,12 @@ document.querySelectorAll(".delAd").forEach(element => {
         }
     });
 });
+
+
+const whatsApp = document.querySelector('#whatsApp_btn')
+
+whatsApp.addEventListener('click', () => {
+    const number = whatsApp.getAttribute('data-contact')
+    const message = whatsApp.getAttribute('data-message')
+    window.open(`https://wa.me/55${number}?text=${message}`, '_blank')
+})

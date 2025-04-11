@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class AdvertisesModel extends Model
 {
     protected $table = 'advertises';
-    protected $fillable = ['title', 'slug', 'user_id', 'price', 'negotiate', 'descritpion', 'contact', 'views', 'state_id', 'category_id'];
+    protected $fillable = ['title', 'slug', 'user_id', 'price', 'negotiate', 'descritpion', 'contact', 'views', 'state_id', 'category_id', 'created_at'];
 
     public function category(): BelongsTo
     {
