@@ -9,5 +9,5 @@
     <link rel="stylesheet" href="{{asset('temp/'.$styles.'.css')}}" />
     <script src="{{asset('temp/js/scripts.js')}}" defer></script>
     @endif
-    <title>{{$title}}</title>
+    <title>{{$title ?? ''}}</title>
 </head>

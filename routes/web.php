@@ -10,8 +10,8 @@ Route::controller(PagesController::class)->group(function () {
         Route::get('/myProfile', 'myProfile')->name('myProfile');
         Route::get('/myAds', 'myAds')->name('myAds');
         Route::get('/myAds/delete/{id}', 'deleteAd')->name('deleteAd');
+        Route::get('/ad/{slug}', 'adDetails')->name('adDetails');
     });
-    Route::get('/ad/{slug}', 'adDetails')->name('adDetails');
 });
 
 Route::controller(AuthController::class)->group(function () {

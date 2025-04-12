@@ -3,30 +3,7 @@
 @section('content')
 <main>
     <div class="ad-area">
-        <div class="ad-area-left">
-            <img
-                class="main-photo"
-                src="{{asset('temp/adFusca/fusca.png')}}">
-            </img>
-            <div class="secundary-photos">
-                <img
-                    class="secundary-image"
-                    src="{{asset('temp/adFusca/fusca2.png')}}">
-                </img>
-                <img
-                    class="secundary-image"
-                    src="{{asset('temp/adFusca/fusca3.png')}}">
-                </img>
-                <img
-                    class="secundary-image"
-                    src="{{asset('temp/adFusca/fusca5.png')}}">
-                </img>
-                <img
-                    class="secundary-image"
-                    src="{{asset('temp/adFusca/fusca4.png')}}">
-                </img>
-            </div>
-        </div>
+        <livewire:galery :images="$ad->photos" />
         <div class="ad-area-right">
             <div class="categories-state">{{$ad->user->state->state}} / {{$ad->category->category}}</div>
             <div class="ad-page-title">{{$ad->title}}</div>
