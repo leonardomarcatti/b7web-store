@@ -37,7 +37,8 @@
             value="150"
             :price="$item['price']"
             user="{{($item->user->id == Auth::user()->id) ? true : false}}"
-            :href="$item['href']" />
+            :href="$item['href']"
+            slug="{{$item->slug}}" />
         @endif
         @endforeach
         @endforeach

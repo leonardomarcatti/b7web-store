@@ -10,7 +10,7 @@
             @foreach($advertises as $ad)
             @foreach($ad->photos as $photo)
             @if($photo->mainPhoto)
-            <x-ad title="{{$ad->title}}" price="{{$ad->price}}" :img="$photo->url" id="{{$ad->id}}" buttons />
+            <x-ad title="{{$ad->title}}" price="{{$ad->price}}" :img="$photo->url" id="{{$ad->id}}" buttons slug="{{$ad->slug}}" />
             @endif
             @endforeach
             @endforeach

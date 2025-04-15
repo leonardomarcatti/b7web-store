@@ -1,12 +1,13 @@
 :root {
   --footerHeight: 92px;
 }
+
 .my-ads-page {
   width: 100%;
   min-height: calc(100vh - var(--footerHeight));
   display: flex;
+  flex-flow: row nowrap;
 }
-
 
 .sidebar a {
   display: flex;
@@ -14,9 +15,11 @@
   text-decoration: none;
   color: #96a3ab;
 }
+
 .sidebar img {
   margin-right: 8px;
 }
+
 .sidebar-top .config-myAds {
   color: #96a3ab;
   font-size: 16px;
@@ -24,14 +27,19 @@
   line-height: normal;
   margin-bottom: 56px;
 }
+
 .sidebar-top .myAds-button {
   color: #5c7bfa;
 }
+
 .myAds-area {
   padding-top: 50px;
   margin-left: 50px;
   width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
 }
+
 .myAds-title {
   color: #3c4952;
   font-size: 40px;
@@ -39,6 +47,7 @@
   line-height: normal;
   margin-bottom: 40px;
 }
+
 .myAds-ads-area {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -61,6 +70,7 @@
   background-size: cover;
   margin-bottom: 16px;
 }
+
 .ad-buttons {
   width: 100%;
   display: flex;
@@ -70,6 +80,7 @@
   padding-right: 16px;
   margin-bottom: -54px;
 }
+
 .ad-button {
   height: 38px;
   width: 38px;
@@ -80,11 +91,13 @@
   cursor: pointer;
   margin-left: 8px;
 }
+
 @media (max-width: 1024px) {
   .myAds-ads-area {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
 @media (max-width:768px){
   .my-ads-page {
     flex-direction: column;
@@ -111,6 +124,7 @@
     margin-top: 50px;
   }
 }
+
 @media (max-width: 640px) {
 
   .myAds-area {

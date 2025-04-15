@@ -11,7 +11,7 @@ class Galery extends Component
     public function mount($images)
     {
         $this->images = $images;
-        $this->url = $images->where('mainPhoto', 1)->first()->url;
+        $this->url = $images->where('mainPhoto', 1)->first()->url ?? 'https://place-hold.it/500x500/gray/black';
     }
 
     public function render()

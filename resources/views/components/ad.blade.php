@@ -1,4 +1,4 @@
-<div class="my-ad-item">
+<div class="my-ad-item" href="{{route('adDetails', ['slug' => $slug])}}">
     @if(isset($user) && $user == true)
     <span class="pill my-ad-pill">Meu Anúncio</span>
     @endif
@@ -15,7 +15,9 @@
             </div>
         </div>
         @endif
-        <img class="ad-image" src="{{$img ?? 'https://place-hold.it/300x300/transp/black'}}" alt="" srcset="">
+        <a href="{{route('adDetails', ['slug' => $slug])}}">
+            <img class="ad-image" src="{{$img ?? 'https://place-hold.it/300x300/transp/black'}}" alt="" srcset="">
+        </a>
     </div>
 
     <div class="ad-title">{{$title}}</div>

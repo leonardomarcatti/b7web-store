@@ -67,19 +67,34 @@ class PagesController extends Controller
         return $ad;
     }
 
-    private function getAdvertise(string $slug): object
+    private function getAdvertise(string $slug)
     {
         $ad = AdvertisesModel::where('slug', $slug)->first();
-        $ad->views += 1;
-        return $ad;
+        if ($ad) {
+            $ad->views += 1;
+            return $ad;
+        }
+
+        return false;
+    }
+
+    public function getRaletedAds(object $ad): object
+    {
+        $ads = AdvertisesModel::where([['category_id', $ad->category_id], ['user_id', $ad->user->id]])->limit(4)->get();
+        return $ads;
     }
 
     public function adDetails(string $slug)
     {
         $ad = $this->getAdvertise($slug);
-        $this->updateAdvertiseViews($ad);
-        $this->formatAdData($ad);
-        $userData = $this->getUserData();
-        return view('adPage', ['title' => 'Detalhes', 'styles' => 'adPageStyle', 'name' => $userData['name'][0], 'ad' => $ad]);
+        if ($ad) {
+            $this->updateAdvertiseViews($ad);
+            $this->formatAdData($ad);
+            $userData = $this->getUserData();
+            $relatedAds = $this->getRaletedAds($ad);
+            return view('adPage', ['title' => 'Detalhes', 'styles' => 'adPageStyle', 'name' => $userData['name'][0], 'ad' => $ad, 'relatedAds' => $relatedAds]);
+        }
+
+        return \redirect()->back();
     }
 }
