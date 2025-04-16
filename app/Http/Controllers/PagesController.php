@@ -80,7 +80,8 @@ class PagesController extends Controller
 
     public function getRaletedAds(object $ad): object
     {
-        $ads = AdvertisesModel::where([['category_id', $ad->category_id], ['user_id', $ad->user->id]])->limit(4)->get();
+        $ads = AdvertisesModel::where([['category_id', $ad->category_id], ['user_id', '<>', Auth::user()->id]])
+            ->orderBy('created_at', 'desc')->orderBy('views', 'desc')->limit(4)->get();
         return $ads;
     }
 
