@@ -30,15 +30,14 @@
     <div class="ads">
         <div class="ads-title">Anúncios relacionados</div>
         <div class="ads-area">
+            @if(count($relatedAds) > 0)
             @foreach($relatedAds as $relatedAd)
-            @if($ad->slug != $relatedAd->slug)
-            <a href="{{$relatedAd->slug}}" class="ad-item">
-                <img class="ad-image" src="{{asset($relatedAd->photos->first()->url ?? '')}}" />
-                <div class="ad-title">{{$relatedAd->title}}</div>
-                <div class="ad-price">{{$relatedAd->price}}</div>
-            </a>
-            @endif
+
+            <x-ad img="{{asset($relatedAd->photos->first()->url) ?? ''}}" title="{{$relatedAd->title}}" value="150" price="{{$relatedAd->price}}" href="{{$relatedAd->slug}}" slug="{{$relatedAd->slug}}" />
             @endforeach
+            @else
+            <span>Não há anuncios relacionados</span>
+            @endif
         </div>
     </div>
 </main>

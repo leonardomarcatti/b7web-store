@@ -312,6 +312,17 @@ small {
   background-size: cover;
   margin-bottom: 16px;
 }
+
+.ad-image:hover {
+    transform: scale(1.1);
+    transition: all .5s
+}
+
+.ad-image:not(hover) {
+    transform: scale(1);
+    transition: all .5s
+}
+
 .ad-title {
   width: 90%;
   color: #3c4952;
