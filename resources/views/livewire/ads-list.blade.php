@@ -1,0 +1,51 @@
+<div>
+    <div class="hero-area">
+        <div class="search-area-adsList">
+            <input
+                class="search-text"
+                type="text"
+                placeholder="Estou procurando por..." />
+            <div class="options-area">
+                <div class="categories-area">
+                    <p>Categoria</p>
+                    <select class="categories-options" wire:model.change="selectedCategory">
+                        <option selected value="0">Todas</option>
+                        @foreach ($categories as $category)
+                        <option value="{{$category->id}}">{{$category->category}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="states-area">
+                    <p>Estados</p>
+                    <select class="states" wire:model.change="selectedState">
+                        <option selected value="0">Todos</option>
+                        <option selected hidden disabled value="0">Todos</option>
+                        @foreach ($states as $state)
+                        <option value="{{$state->id}}">{{$state->state}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <button class="search-mobile-button">Procurar</button>
+            </div>
+        </div>
+    </div>
+    <div class="ads">
+        <div class="ads-title">Anúncios recentes</div>
+        <div class="ads-area">
+            @foreach ($advertises as $advertise)
+            @foreach($advertise->photos as $photo)
+            @if($photo->mainPhoto)
+            <x-ad
+                img="{{$photo->url}}"
+                title="{{$advertise['title']}}"
+                value="150"
+                :price="$advertise['price']"
+                user="{{($advertise->user->id == Auth::user()->id) ? true : false}}"
+                :href="$advertise['href']"
+                slug="{{$advertise->slug}}" />
+            @endif
+            @endforeach
+            @endforeach
+        </div>
+    </div>
+</div>

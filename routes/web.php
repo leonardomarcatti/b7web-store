@@ -11,6 +11,7 @@ Route::controller(PagesController::class)->group(function () {
         Route::get('/myAds', 'myAds')->name('myAds');
         Route::get('/myAds/delete/{id}', 'deleteAd')->name('deleteAd');
         Route::get('/ad/{slug}', 'adDetails')->name('adDetails');
+        Route::get('/adsList', 'adsList')->name('adsList');
     });
 });
 

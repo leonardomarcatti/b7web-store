@@ -6,6 +6,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use App\Models\StatesModel;
 use App\Models\AdvertisesModel;
+use App\Models\CategoriesModel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Number;
@@ -17,20 +18,22 @@ class PagesController extends Controller
     {
         $user = Auth::user();
         $name = \explode(' ', $user->name);
+        // \dd($name);
         return ['name' => $name, 'user' => $user];
     }
 
     public function index(): View
     {
         $data = $this->getUserData();
-        return view('home', ['name' => $data['name'][0]]);
+        $data['title'] = 'B7Web Store';
+        return view('home', $data);
     }
 
     public function myProfile(): View
     {
         $userData = $this->getUserData();
         $states = StatesModel::all();
-        $data = ['states' => $states, 'user' => $userData['user'], 'name' => $userData['name'][0], 'title' => "Update Profile", 'styles' => "myAccountStyle"];
+        $data = ['states' => $states, 'user' => $userData['user'], 'name' => $userData['name'], 'title' => "Update Profile", 'styles' => "myAccountStyle"];
         return view('myProfile', $data);
     }
 
@@ -97,5 +100,13 @@ class PagesController extends Controller
         }
 
         return \redirect()->back();
+    }
+
+    public function adsList(): View
+    {
+        $data = $this->getUserData();
+        $data['title'] = 'B7Web Store';
+        $data['styles'] = 'adsListStyle';
+        return view('adsListPage', $data);
     }
 }

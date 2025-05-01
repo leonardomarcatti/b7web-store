@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt">
 
-<x-top title={{$title}} styles="{{$styles}}" />
+<x-top title={{$title}} styles="{{$styles ?? ''}}" />
 
 <body>
-    <x-header :name=$name />
+    <x-header name={{$name[0]}} />
     <main>
         @yield('content')
     </main>

@@ -1,5 +1,8 @@
 @extends('layout.layout')
 
 @section('content')
-<x-advertises />
+<main>
+    <livewire:ads-list />
+</main>
+
 @endsection
