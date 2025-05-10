@@ -1,10 +1,7 @@
 <div>
     <div class="hero-area">
         <div class="search-area-adsList">
-            <input
-                class="search-text"
-                type="text"
-                placeholder="Estou procurando por..." />
+            <input wire:model.live="text" class="search-text" type="text" placeholder="Estou procurando por..." />
             <div class="options-area">
                 <div class="categories-area">
                     <p>Categoria</p>
@@ -16,7 +13,7 @@
                     </select>
                 </div>
                 <div class="states-area">
-                    <p>Estados</p>
+                    <p class="state-label">Estados</p>
                     <select class="states" wire:model.change="selectedState">
                         <option selected value="0">Todos</option>
                         <option selected hidden disabled value="0">Todos</option>
@@ -32,6 +29,7 @@
     <div class="ads">
         <div class="ads-title">Anúncios recentes</div>
         <div class="ads-area">
+            @if(count($advertises) > 0)
             @foreach ($advertises as $advertise)
             @foreach($advertise->photos as $photo)
             @if($photo->mainPhoto)
@@ -46,6 +44,7 @@
             @endif
             @endforeach
             @endforeach
+            @endif
         </div>
     </div>
 </div>

@@ -9,7 +9,7 @@ use App\Models\CategoriesModel;
 
 class AdsList extends Component
 {
-    public $categories, $states, $advertises, $selectedCategory, $selectedState;
+    public $categories, $states, $advertises, $selectedCategory, $selectedState, $text;
 
 
     public function mount()
@@ -23,14 +23,11 @@ class AdsList extends Component
     {
         return view('livewire.ads-list');
     }
-    /**
-     * !TODO - CRIAR FUNÇÃO
-     */
+
     public function applyFilters(): void
     {
         if ($this->selectedCategory == 0 && $this->selectedState == 0) {
             $this->advertises = AdvertisesModel::all();
-            return;
         }
 
         if ($this->selectedCategory != 0 && $this->selectedState != 0) {
@@ -42,12 +39,10 @@ class AdsList extends Component
                 }
             }
             $this->advertises = $filteredAdvertises;
-            return;
         }
 
         if ($this->selectedCategory != 0 && $this->selectedState == 0) {
             $this->advertises = AdvertisesModel::where('category_id', $this->selectedCategory)->get();
-            return;
         }
 
         if ($this->selectedCategory == 0 && $this->selectedState != 0) {
@@ -59,17 +54,14 @@ class AdsList extends Component
                 }
             }
             $this->advertises = $filteredAdvertises;
-            return;
+        }
+
+        if (\trim($this->text) != '') {
+            $this->advertises =  AdvertisesModel::where('title', 'like', '%' . $this->text . '%')->get();
         }
     }
 
-    public function updatedSelectedCategory(): void
-    {
-        $this->applyFilters();
-        return;
-    }
-
-    public function updatedSelectedState(): void
+    public function updated(): void
     {
         $this->applyFilters();
         return;

@@ -18,7 +18,6 @@ class PagesController extends Controller
     {
         $user = Auth::user();
         $name = \explode(' ', $user->name);
-        // \dd($name);
         return ['name' => $name, 'user' => $user];
     }
 

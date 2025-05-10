@@ -115,6 +115,15 @@ main {
     min-height: calc(100vh-var(--footerHeight));
 }
 
+#search {
+    text-decoration: none;
+    font-size: large;
+    background-color: #5c7bfa;
+    padding: 5px 10px;
+    color: white;
+    float: right;
+}
+
 /*
 * Hero Area
 */
@@ -579,6 +588,7 @@ footer span:last-child {
         flex-direction: column;
         align-items: center;
         margin-top: 48px;
+        background-color: red;
     }
 
     .ads-title {
