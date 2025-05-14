@@ -5,8 +5,8 @@
             <div class="options-area">
                 <div class="categories-area">
                     <p>Categoria</p>
-                    <select class="categories-options" wire:model.change="selectedCategory">
-                        <option selected value="0">Todas</option>
+                    <select class="categories-options" wire:model.live="selectedCategory">
+                        <option value="0">Todas</option>
                         @foreach ($categories as $category)
                         <option value="{{$category->id}}">{{$category->category}}</option>
                         @endforeach
@@ -14,9 +14,8 @@
                 </div>
                 <div class="states-area">
                     <p class="state-label">Estados</p>
-                    <select class="states" wire:model.change="selectedState">
-                        <option selected value="0">Todos</option>
-                        <option selected hidden disabled value="0">Todos</option>
+                    <select class="states" wire:model.live="selectedState">
+                        <option value="0">Todos</option>
                         @foreach ($states as $state)
                         <option value="{{$state->id}}">{{$state->state}}</option>
                         @endforeach
@@ -45,6 +44,9 @@
             @endforeach
             @endforeach
             @endif
+        </div>
+        <div class="col-6 bg-primary">
+            {{ $advertises->links() }}
         </div>
     </div>
 </div>

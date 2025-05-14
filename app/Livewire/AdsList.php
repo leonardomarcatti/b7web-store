@@ -6,64 +6,65 @@ use Livewire\Component;
 use App\Models\StatesModel;
 use App\Models\AdvertisesModel;
 use App\Models\CategoriesModel;
+use Livewire\WithPagination;
 
 class AdsList extends Component
 {
-    public $categories, $states, $advertises, $selectedCategory, $selectedState, $text;
+    use WithPagination;
+    public $categories, $states, $selectedCategory, $selectedState, $text;
 
 
     public function mount()
     {
-        $this->advertises = AdvertisesModel::all();
         $this->states = StatesModel::all();
         $this->categories = CategoriesModel::all();
+        $this->selectedCategory = 0;
+        $this->selectedState = 0;
+        $this->text = '';
     }
 
     public function render()
     {
-        return view('livewire.ads-list');
+        return view('livewire.ads-list', [
+            'advertises' => $this->applyFilters()->paginate(10),
+            'states' => $this->states ?? StatesModel::all(),
+            'categories' => $this->categories ?? CategoriesModel::all(),
+        ]);
     }
 
-    public function applyFilters(): void
+    public function applyFilters()
     {
-        if ($this->selectedCategory == 0 && $this->selectedState == 0) {
-            $this->advertises = AdvertisesModel::all();
+        $query = AdvertisesModel::query();
+
+        if ($this->selectedCategory && $this->selectedCategory != 0) {
+            $query->where('category_id', $this->selectedCategory);
         }
 
-        if ($this->selectedCategory != 0 && $this->selectedState != 0) {
-            $this->advertises = AdvertisesModel::where('category_id', $this->selectedCategory)->get();
-            $filteredAdvertises = [];
-            foreach ($this->advertises as $key => $ad) {
-                if ($ad->user->state_id == $this->selectedState) {
-                    $filteredAdvertises[$key] = $ad;
-                }
-            }
-            $this->advertises = $filteredAdvertises;
+        if ($this->selectedState && $this->selectedState != 0) {
+            $query->whereHas('user', function ($q) {
+                $q->where('state_id', $this->selectedState);
+            });
         }
 
-        if ($this->selectedCategory != 0 && $this->selectedState == 0) {
-            $this->advertises = AdvertisesModel::where('category_id', $this->selectedCategory)->get();
+        if (trim($this->text) != '') {
+            $query->where('title', 'like', '%' . $this->text . '%');
         }
 
-        if ($this->selectedCategory == 0 && $this->selectedState != 0) {
-            $this->advertises = AdvertisesModel::all();
-            $filteredAdvertises = [];
-            foreach ($this->advertises as $key => $ad) {
-                if ($ad->user->state_id == $this->selectedState) {
-                    $filteredAdvertises[$key] = $ad;
-                }
-            }
-            $this->advertises = $filteredAdvertises;
-        }
-
-        if (\trim($this->text) != '') {
-            $this->advertises =  AdvertisesModel::where('title', 'like', '%' . $this->text . '%')->get();
-        }
+        return $query;
     }
 
-    public function updated(): void
+    public function updatedSelectedCategory()
     {
-        $this->applyFilters();
-        return;
+        $this->resetPage();
+    }
+
+    public function updatedSelectedState()
+    {
+        $this->resetPage();
+    }
+
+    public function updatedText()
+    {
+        $this->resetPage();
     }
 }

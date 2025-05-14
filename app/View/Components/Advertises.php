@@ -20,7 +20,7 @@ class Advertises extends Component
      */
     public function render(): View|Closure|string
     {
-        $advertiseList = AdvertisesModel::all();
+        $advertiseList = AdvertisesModel::paginate(25);
         return view('components.advertises', ['advertiseList' => $advertiseList]);
     }
 }

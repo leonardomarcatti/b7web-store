@@ -13,7 +13,7 @@ class AdvertisesSeeder extends Seeder
     public function run(): void
     {
 
-        for ($i = 0; $i <= 9; $i++) {
+        for ($i = 1; $i <= 900; $i++) {
             AdvertisesModel::create([
                 'title' => "Advertise $i",
                 'slug' => "advertise-$i",
@@ -21,7 +21,7 @@ class AdvertisesSeeder extends Seeder
                 'contact' => rand(100000000, 999999999),
                 'views' => rand(0, 1000),
                 'price' => rand(1000, 100000) / 100, // Ex: 1743 / 100 = 17.43
-                'user_id' => rand(1, 2),
+                'user_id' => rand(1, 54),
                 'category_id' => rand(1, 5),
                 'negotiate' => (bool)rand(0, 1),
             ]);
