@@ -53,17 +53,7 @@ class AdsList extends Component
         return $query;
     }
 
-    public function updatedSelectedCategory()
-    {
-        $this->resetPage();
-    }
-
-    public function updatedSelectedState()
-    {
-        $this->resetPage();
-    }
-
-    public function updatedText()
+    public function updated(): void
     {
         $this->resetPage();
     }

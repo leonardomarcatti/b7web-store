@@ -45,8 +45,8 @@
             @endforeach
             @endif
         </div>
-        <div class="col-6 bg-primary">
-            {{ $advertises->links() }}
+        <div class="mt-8">
+            {{ $advertises->links('pagination::tailwind') }}
         </div>
     </div>
 </div>
