@@ -38,7 +38,7 @@ class PagesController extends Controller
     public function myAds(): View
     {
         $userData = $this->getUserData();
-        $data = ['name' => $userData['name'][0], 'styles' => 'myAdsStyle', 'title' => 'B7Store - Meus anúncios', 'advertises' => $userData['user']->advertises];
+        $data = ['name' => $userData['name'], 'styles' => 'myAdsStyle', 'title' => 'B7Store - Meus anúncios', 'advertises' => $userData['user']->advertises];
         return view('myAds', $data);
     }
 
@@ -94,7 +94,7 @@ class PagesController extends Controller
             $this->formatAdData($ad);
             $userData = $this->getUserData();
             $relatedAds = $this->getRaletedAds($ad);
-            return view('adPage', ['title' => 'Detalhes', 'styles' => 'adPageStyle', 'name' => $userData['name'][0], 'ad' => $ad, 'relatedAds' => $relatedAds]);
+            return view('adPage', ['title' => 'Detalhes', 'styles' => 'adPageStyle', 'name' => $userData['name'], 'ad' => $ad, 'relatedAds' => $relatedAds]);
         }
 
         return \redirect()->back();

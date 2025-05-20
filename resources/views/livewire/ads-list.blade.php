@@ -43,6 +43,8 @@
             @endif
             @endforeach
             @endforeach
+            @else
+            <span>Não há anúncios para exibir</span>
             @endif
         </div>
         <div class="mt-8">
