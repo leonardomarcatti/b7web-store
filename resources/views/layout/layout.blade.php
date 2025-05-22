@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt">
-
 <x-top title={{$title}} styles="{{$styles ?? ''}}" />
 
 <body>
@@ -9,6 +8,7 @@
         @yield('content')
     </main>
     <x-footer />
+    @livewireScripts
 </body>
 
 </html>

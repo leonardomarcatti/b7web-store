@@ -11,14 +11,18 @@ use Livewire\WithPagination;
 class AdsList extends Component
 {
     use WithPagination;
-    #[Url(as: 't')]
+
+    // #[Url(as: 't')]
     public $text = '';
-    #[Url(as: 's')]
+    // #[Url(as: 's')]
     public $selectedState = 0;
-    #[Url(as: 'c')]
+    // #[Url(as: 'c')]
     public $selectedCategory = 0;
+    public $page = 1;
 
     public $categories, $states;
+
+    protected $listeners = ['gotoPage'];
 
     public function mount()
     {
@@ -29,19 +33,42 @@ class AdsList extends Component
         $this->text;
     }
 
-    protected function queryString(): array
-    {
-        return ['text' => ['as' => 't'], 'selectedCategory' => ['as' => 'c'], 'selectedState' => ['as' => 's']];
-    }
+    // protected function queryString(): array
+    // {
+    //     return [
+    //         'text' => ['as' => 't', 'except' => ''],
+    //         'selectedCategory' => ['as' => 'c', 'except' => 0],
+    //         'selectedState' => ['as' => 's', 'except' => 0],
+    //     ];
+    // }
 
     public function render()
     {
+        $advertises = AdvertisesModel::query()
+            ->when($this->text, function ($query) {
+                $query->where('title', 'like', '%' . $this->text . '%');
+            })
+            ->when($this->selectedCategory != 0, function ($query) {
+                $query->where('category_id', $this->selectedCategory);
+            })
+            ->when($this->selectedState != 0, function ($query) {
+                $query->whereHas('user', function ($q) {
+                    $q->where('state_id', $this->selectedState);
+                });
+            })
+            ->with('photos', 'user')
+            ->paginate(10);
+
+        $categories = CategoriesModel::all();
+        $states = StatesModel::all();
+
         return view('livewire.ads-list', [
-            'advertises' => $this->applyFilters()->paginate(10),
-            'states' => $this->states,
-            'categories' => $this->categories,
+            'advertises' => $advertises,
+            'categories' => $categories,
+            'states' => $states,
         ]);
     }
+
 
     public function applyFilters()
     {

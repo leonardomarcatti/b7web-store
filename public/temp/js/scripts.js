@@ -19,3 +19,16 @@ if (whatsApp) {
         window.open(`https://wa.me/55${number}?text=${message}`, '_blank')
     })
 }
+
+
+document.addEventListener('click', function (event) {
+    const el = event.target.closest('.pagination a');
+    if (el) {
+        event.preventDefault();
+        const url = new URL(el.href);
+        const page = url.searchParams.get('page');
+        if (page) {
+            Livewire.emit('gotoPage', page);
+        }
+    }
+});
