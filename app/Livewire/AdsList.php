@@ -12,17 +12,15 @@ class AdsList extends Component
 {
     use WithPagination;
 
-    // #[Url(as: 't')]
-    public $text = '';
-    // #[Url(as: 's')]
-    public $selectedState = 0;
-    // #[Url(as: 'c')]
-    public $selectedCategory = 0;
-    public $page = 1;
+    #[Url(as: 't')]
+    public $text;
+    #[Url(as: 's')]
+    public $selectedState;
+    #[Url(as: 'c')]
+    public $selectedCategory;
 
     public $categories, $states;
 
-    protected $listeners = ['gotoPage'];
 
     public function mount()
     {
@@ -33,42 +31,15 @@ class AdsList extends Component
         $this->text;
     }
 
-    // protected function queryString(): array
-    // {
-    //     return [
-    //         'text' => ['as' => 't', 'except' => ''],
-    //         'selectedCategory' => ['as' => 'c', 'except' => 0],
-    //         'selectedState' => ['as' => 's', 'except' => 0],
-    //     ];
-    // }
+    protected function queryString(): array
+    {
+        return ['text' => ['as' => 't'], 'selectedCategory' => ['as' => 'c'], 'selectedState' => ['as' => 's']];
+    }
 
     public function render()
     {
-        $advertises = AdvertisesModel::query()
-            ->when($this->text, function ($query) {
-                $query->where('title', 'like', '%' . $this->text . '%');
-            })
-            ->when($this->selectedCategory != 0, function ($query) {
-                $query->where('category_id', $this->selectedCategory);
-            })
-            ->when($this->selectedState != 0, function ($query) {
-                $query->whereHas('user', function ($q) {
-                    $q->where('state_id', $this->selectedState);
-                });
-            })
-            ->with('photos', 'user')
-            ->paginate(10);
-
-        $categories = CategoriesModel::all();
-        $states = StatesModel::all();
-
-        return view('livewire.ads-list', [
-            'advertises' => $advertises,
-            'categories' => $categories,
-            'states' => $states,
-        ]);
+        return view('livewire.ads-list', ['advertises' => $this->applyFilters()->paginate(10)->withQueryString()]);
     }
-
 
     public function applyFilters()
     {

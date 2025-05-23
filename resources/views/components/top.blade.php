@@ -9,8 +9,9 @@
     @if(isset($styles) && !empty($styles))
     <link rel="stylesheet" href="{{asset('temp/'.$styles.'.css')}}" />
     <script src="{{asset('temp/js/scripts.js')}}" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" defer></script>
-    @endif
-    @livewireStyles
-    <title>{{$title ?? ''}}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+@endif
+@livewireStyles
+<title>{{$title ?? ''}}</title>
 </head>

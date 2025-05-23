@@ -7,7 +7,7 @@
                 <div class="options-area">
                     <div class="categories-area">
                         <p>Categoria</p>
-                        <select class="categories-options" wire:model.live="selectedCategory">
+                        <select class="categories-options" wire:model.lazy="selectedCategory">
                             <option value="0">Todas</option>
                             @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->category }}</option>
@@ -17,18 +17,19 @@
 
                     <div class="states-area">
                         <p class="state-label">Estados</p>
-                        <select class="states" wire:model.live="selectedState">
+                        <select class="states" wire:model.lazy="selectedState">
                             <option value="0">Todos</option>
                             @foreach ($states as $state)
                             <option value="{{ $state->id }}">{{ $state->state }}</option>
                             @endforeach
                         </select>
                     </div>
-
-                    <button class="search-mobile-button">Procurar</button>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="mt-8">
+        {{ $advertises->links() }}
     </div>
 
     <div class="ads">
@@ -52,10 +53,6 @@
             @else
             <span>Não há anúncios para exibir</span>
             @endif
-        </div>
-
-        <div class="mt-8">
-            {{ $advertises->links('pagination::tailwind') }}
         </div>
     </div>
 </section>
