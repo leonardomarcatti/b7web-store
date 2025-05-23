@@ -28,10 +28,6 @@
             </div>
         </div>
     </div>
-    <div class="mt-8">
-        {{ $advertises->links() }}
-    </div>
-
     <div class="ads">
         <div class="ads-title">Anúncios recentes</div>
         <div class="ads-area">
@@ -54,5 +50,8 @@
             <span>Não há anúncios para exibir</span>
             @endif
         </div>
+    </div>
+    <div class="mt-8">
+        {{ $advertises->links('pagination::tailwind', ['pageName' => 'page']) }}
     </div>
 </section>
