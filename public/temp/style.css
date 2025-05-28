@@ -262,11 +262,11 @@ small {
     color: tomato;
 }
 
-.buttons .cars,
-.buttons .eletronics,
-.buttons .clothes,
-.buttons .sports,
-.buttons .babies {
+.buttons .carros,
+.buttons .eletronicos,
+.buttons .roupas,
+.buttons .esportes,
+.buttons .bebes {
     width: 17%;
     aspect-ratio: 17/5;
     display: flex;
@@ -276,7 +276,7 @@ small {
     border: 0;
 }
 
-.buttons .cars {
+.buttons .carros {
     background-color: #5c7bfa;
     color: #fff;
     font-size: 16px;
@@ -286,19 +286,19 @@ small {
     border: 0;
 }
 
-.buttons .eletronics,
-.buttons .clothes,
-.buttons .sports,
-.buttons .babies {
+.buttons .eletronicos,
+.buttons .roupas,
+.buttons .esportes,
+.buttons .bebes {
     background-color: #f5f7ff;
     color: #5c7bfa;
 }
 
-.buttons .cars img,
-.buttons .eletronics img,
-.buttons .clothes img,
-.buttons .sports img,
-.buttons .babies img {
+.buttons .carros img,
+.buttons .eletronicos img,
+.buttons .roupas img,
+.buttons .esportes img,
+.buttons .bebes img {
     margin-right: 8px;
 }
 
@@ -510,11 +510,11 @@ footer span:last-child {
         gap: 20px;
     }
 
-    .buttons .cars,
-    .buttons .eletronics,
-    .buttons .clothes,
-    .buttons .sports,
-    .buttons .babies {
+    .buttons .carros,
+    .buttons .eletronicos,
+    .buttons .roupas,
+    .buttons .esportes,
+    .buttons .bebes {
         width: 100%;
     }
 
@@ -578,11 +578,11 @@ footer span:last-child {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .buttons .cars,
-    .buttons .eletronics,
-    .buttons .clothes,
-    .buttons .sports,
-    .buttons .babies {
+    .buttons .carros,
+    .buttons .eletronicos,
+    .buttons .roupas,
+    .buttons .esportes,
+    .buttons .bebes {
         width: 158px;
         height: 72px;
     }

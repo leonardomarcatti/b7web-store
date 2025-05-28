@@ -16,6 +16,7 @@ class PagesController extends Controller
 {
 
     use WithPagination;
+
     public function getUserData(): array
     {
         $user = Auth::user();
