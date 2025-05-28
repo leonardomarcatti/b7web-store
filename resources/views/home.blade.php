@@ -1,6 +1,6 @@
 @extends('layout.layout')
 
 @section('content')
-<x-hero />
+<x-hero categories="$categoryes" />
 <x-advertises />
 @endsection

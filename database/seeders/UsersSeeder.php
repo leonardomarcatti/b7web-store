@@ -10,6 +10,9 @@ class UsersSeeder extends Seeder
     /**
      * Run the database seeds.
      */
+
+    protected $_sa;
+
     public function run(): void
     {
         for ($i = 1; $i <= 54; $i++) {

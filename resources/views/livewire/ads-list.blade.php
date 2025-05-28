@@ -3,7 +3,6 @@
         <div class="hero-area">
             <div class="search-area-adsList">
                 <input wire:model.live="text" class="search-text" type="text" placeholder="Estou procurando por..." />
-
                 <div class="options-area">
                     <div class="categories-area">
                         <p>Categoria</p>
@@ -29,14 +28,13 @@
         </div>
     </div>
     <div class="ads">
-        <div class="ads-title">Anúncios recentes</div>
         <div class="ads-area">
             @if(count($advertises) > 0)
             @foreach ($advertises as $advertise)
             @foreach($advertise->photos as $photo)
             @if($photo->mainPhoto)
             <x-ad
-                img="{{ $photo->url }}"
+                img="{{ asset($photo->url) }}"
                 title="{{ $advertise['title'] }}"
                 value="150"
                 :price="$advertise['price']"

@@ -6,13 +6,16 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use App\Models\StatesModel;
 use App\Models\AdvertisesModel;
+use App\Models\CategoriesModel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Number;
+use Livewire\WithPagination;
 
 class PagesController extends Controller
 {
 
+    use WithPagination;
     public function getUserData(): array
     {
         $user = Auth::user();
@@ -24,6 +27,7 @@ class PagesController extends Controller
     {
         $data = $this->getUserData();
         $data['title'] = 'B7Web Store';
+        $data['categories'] = CategoriesModel::all();
         return view('home', $data);
     }
 
@@ -106,5 +110,21 @@ class PagesController extends Controller
         $data['title'] = 'B7Web Store';
         $data['styles'] = 'adsListStyle';
         return view('adsListPage', $data);
+    }
+
+    public function category(string $slug)
+    {
+        $category = CategoriesModel::where('slug', $slug)->first();
+
+        if (!$category) {
+            return \redirect()->back();
+        }
+
+        $data = $this->getUserData();
+        $data['title'] = $category->category;
+        $data['styles'] = 'adsListStyle';
+        $data['category'] = $category;
+        $data['userData'] = $this->getUserData();
+        return View('categoriesList', $data);
     }
 }

@@ -5,7 +5,7 @@
         @foreach($item->photos as $photo)
         @if($photo->mainPhoto)
         <x-ad
-            img="{{$photo->url}}"
+            img="{{asset($photo->url)}}"
             title="{{$item['title']}}"
             value="150"
             :price="$item['price']"

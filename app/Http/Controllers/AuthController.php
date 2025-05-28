@@ -58,7 +58,6 @@ class AuthController extends Controller
 
     public function update(updateUserRequest $r)
     {
-
         $userData = $r->only(['name', 'email', 'password', 'state_id']);
         $userData['password'] = Hash::make($userData['password']);
         User::where('id', Auth::user()->id)->update($userData);

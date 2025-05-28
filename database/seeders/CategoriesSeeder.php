@@ -11,11 +11,22 @@ class CategoriesSeeder extends Seeder
     /**
      * Run the database seeds.
      */
+
+    private function  removerAcentos($texto)
+    {
+        return preg_replace(
+            '/[^A-Za-z0-9\-]/',
+            '',
+            iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $texto)
+        );
+    }
+
     public function run(): void
     {
-        $alphabet = ['A', 'B', 'C', 'D', 'E'];
-        for ($i = 0; $i <= 4; $i++) {
-            CategoriesModel::create(['category' => "Categoria $alphabet[$i]"]);
+        $categories = ['Carros', 'Eletronicos', 'Roupas', 'Esportes', 'Bebês'];
+
+        foreach ($categories as $key => $value) {
+            CategoriesModel::create(['category' => $value, 'slug' => \strtolower($this->removerAcentos($value))]);
         }
     }
 }
