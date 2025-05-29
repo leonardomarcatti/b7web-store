@@ -13,6 +13,7 @@ Route::controller(PagesController::class)->group(function () {
         Route::get('/ad/{slug}', 'adDetails')->name('adDetails');
         Route::get('/adsList', 'adsList')->name('adsList');
         Route::get('/category/{slug}', 'category')->name('category');
+        Route::get('/newAd', 'newAd')->name('newAd');
     });
 });
 

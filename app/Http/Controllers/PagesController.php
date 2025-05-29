@@ -10,12 +10,17 @@ use App\Models\CategoriesModel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Number;
-use Livewire\WithPagination;
 
 class PagesController extends Controller
 {
 
-    use WithPagination;
+    public function newAd(): View
+    {
+        $data = $this->getUserData();
+        $data['title'] = 'B7Web Store';
+        $data['styles'] = 'newAdStyle';
+        return view('newAd', $data);
+    }
 
     public function getUserData(): array
     {

@@ -7,7 +7,7 @@
             {{$name}}
         </a>
         @endif
-        <a href="" class="announce-now">Anunciar</a>
+        <a href="{{route('newAd')}}" class="announce-now">Anunciar</a>
         <img class="menu-icon" src="{{asset('temp/icons/menuIcon.png')}}" alt="Menu" />
         <div class="menu-mobile">
             <a href="myAccount.html" class="my-account-mobile">

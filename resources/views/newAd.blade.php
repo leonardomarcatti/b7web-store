@@ -2,6 +2,6 @@
 
 @section('content')
 <main>
-    <livewire:ads-list />
+    <livewire:new-ad />
 </main>
 @endsection
