@@ -7,7 +7,7 @@
                 <div class="area-left-up-img">
                     <img src="temp/icons/imageIcon.png" />
                     <div class="area-left-up-img-text">
-                        <span>Clique aqui</span> para enviar uma imagem
+                        <span id="clique_aqui">Clique aqui</span> para enviar uma imagem
                     </div>
                 </div>
             </div>
@@ -31,39 +31,55 @@
         </div>
         <div class="newAd-area-right">
             <form class="newAd-form" wire:submit="saveNewAd">
+                <input type="file" name="file" id="file" hidden wire:model="photos" multiple />
                 <div class="title-area">
-                    <div class="title-label">Título do anúncio</div>
+                    <label class="title-label" for="title">Título do anúncio</label>
                     <input type="text" wire:model="title" name="title" id="title" placeholder="Digite o título do anúncio" />
+                    @error('title')
+                    <small class="error">{{$message}}</small>
+                    @enderror
                 </div>
                 <div class="value-area">
                     <div class="value-label">
-                        <div class="value-area-text">Valor</div>
+                        <label for="price" class="value-area-text">Valor</label>
                         <input wire:model="price" type="number" step="0.01" name="price" id="price" placeholder="Digite o valor" />
+                        @error('price')
+                        <small class="error">{{$message}}</small>
+                        @enderror
                     </div>
                     <div class="negotiable-area">
-                        <div class="negotiable-label">Negociável?</div>
+                        <label for="negotiate" class="negotiable-label">Negociável?</label>
                         <select wire:model="negotiate" name="negotiate" id="negotiate">
                             <option value="0" selected>Não</option>
                             <option value="1">Sim</option>
                         </select>
+                        @error('negotiate')
+                        <small class="error">{{$message}}</small>
+                        @enderror
                     </div>
                 </div>
                 <div class="newAd-categories-area">
-                    <div class="newAd-categories-label">Categorias</div>
+                    <label for="category_id" class="newAd-categories-label">Categorias</label>
                     <select wire:model="category_id" name="category_id" id="category_id" class="newAd-categories">
-                        <option selected hidden disabled value="">
+                        <option selected hidden value="">
                             Selecione uma categoria
                         </option>
                         @foreach ($categories as $category)
                         <option value="{{$category->id}}">{{$category->category}}</option>
                         @endforeach
                     </select>
+                    @error('category_id')
+                    <small class="error">{{$message}}</small>
+                    @enderror
                 </div>
                 <div class="description-area">
-                    <div class="description-label">Descrição</div>
+                    <label for="description" class="description-label">Descrição</label>
                     <textarea wire:model="description" name="description" id="description" class="description-text"
                         placeholder="Digite a descrição do anúncio">
                      </textarea>
+                    @error('description')
+                    <small class="error">{{$message}}</small>
+                    @enderror
                 </div>
                 <button class="newAd-button">Criar anúncio</button>
             </form>

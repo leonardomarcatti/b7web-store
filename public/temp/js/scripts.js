@@ -19,3 +19,12 @@ if (whatsApp) {
         window.open(`https://wa.me/55${number}?text=${message}`, '_blank')
     })
 }
+
+const btn = document.querySelector('#clique_aqui')
+
+if (btn) {
+    const fileInput = document.querySelector('#file')
+    btn.addEventListener('click', () => {
+        fileInput.click();
+    })
+}
