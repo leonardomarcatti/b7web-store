@@ -4,9 +4,7 @@
 
 <body>
     <x-header name={{$name[0]}} />
-    <main>
-        @yield('content')
-    </main>
+    @yield('content')
     <x-footer />
     @livewireScripts
 </body>

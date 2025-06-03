@@ -23,7 +23,7 @@ if (whatsApp) {
 const btn = document.querySelector('#clique_aqui')
 
 if (btn) {
-    const fileInput = document.querySelector('#file')
+    const fileInput = document.querySelector('#photos')
     btn.addEventListener('click', () => {
         fileInput.click();
     })

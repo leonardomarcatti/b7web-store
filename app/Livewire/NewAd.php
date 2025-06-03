@@ -17,6 +17,8 @@ class NewAd extends Component
     protected function rules(): array
     {
         return [
+            'photos' => 'required|array|min:1|max:5',
+            'photos.*' => 'image|max:2048',
             'title' => 'required|min:8|max:255',
             'price' => 'required|numeric',
             'negotiate' => 'required|boolean',
