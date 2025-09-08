@@ -19,9 +19,9 @@
         </div>
     </div>
     <div class="terms">
-        Ao continuar, você concorda com os <a href="">Termos de Uso</a> e a
+        <p>Ao continuar, você concorda com os <a href="">Termos de Uso</a> e a
         <a href="">Política de Privacidade</a>, e também, em receber
-        comunicações via e-mail e push de todos os nossos parceiros.
+        comunicações via e-mail e push de todos os nossos parceiros.</p>
     </div>
 </div>
 @endsection

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\StatesModel;
 
 class UsersSeeder extends Seeder
 {
@@ -16,7 +17,7 @@ class UsersSeeder extends Seeder
     public function run(): void
     {
         for ($i = 1; $i <= 54; $i++) {
-            User::create(['name' => "User $i", 'email' => "user$i@test.com", 'state_id' => \rand(1, 27), 'password' => 'asd']);
+            User::create(['name' => "User $i", 'email' => "user$i@test.com", 'state_id' => StatesModel::pluck('id')->random(), 'password' => 'asd']);
         };
     }
 }
