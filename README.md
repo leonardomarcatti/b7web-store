@@ -23,6 +23,31 @@
    <li>🔄 Migrations e Seeds rodando automaticamente no start</li>
 </ul>
 
+<h2>Screenshots</h2>
+<div style="display: flex; flex-flow: row wrap; justify-content: center; gap: 20px;">
+
+  <div style="text-align: center;">
+    <b>Tela de login</b><br/>
+    <img width="500" height="350" src="https://github.com/user-attachments/assets/21ad0ca0-49a2-47dc-bcb7-3e2e9411de58" />
+  </div>
+
+  <div style="text-align: center;">
+    <b>Página Home</b><br/>
+    <img width="500" height="350" src="https://github.com/user-attachments/assets/033ea6d2-16b1-4097-a06d-1129799e82fd" />
+  </div>
+
+  <div style="text-align: center;">
+    <b>Página Meu perfil</b><br/>
+    <img width="500" height="350" src="https://github.com/user-attachments/assets/78ed8f8c-2a25-49e4-812f-cc23838dcf97" />
+  </div>
+
+  <div style="text-align: center;">
+    <b>Página Detalhe do produto</b><br/>
+    <img width="500" height="350" src="https://github.com/user-attachments/assets/192a42a1-565f-4c43-873e-72de3e9ee687" />
+  </div>
+
+</div>
+
 <h2>▶️ Como usar</h2>
 <ol>
    <li>Clonar o projeto e entrar dentro da pasta</li>
