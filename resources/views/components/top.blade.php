@@ -7,11 +7,11 @@
     <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/7630/7630510.png" />
     <link rel="stylesheet" href="{{asset('temp/style.css')}}" />
     @if(isset($styles) && !empty($styles))
-    <link rel="stylesheet" href="{{asset('temp/'.$styles.'.css')}}" />
-    <script src="{{asset('temp/js/scripts.js')}}" defer></script>
-    <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="{{asset('temp/'.$styles.'.css')}}" />
+        <script src="{{asset('temp/js/scripts.js')}}" defer></script>
+        <script src="https://cdn.tailwindcss.com" defer></script>
+    @endif
 </head>
-@endif
 @livewireStyles
 <title>{{$title ?? ''}}</title>
 </head>

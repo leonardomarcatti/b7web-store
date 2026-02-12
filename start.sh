@@ -1,37 +1,21 @@
-#!/bin/bash
-set -e
+#!/bin/sh
 
-DB_USER="admin"
-DB_PASS="9x*UwARA5@"
-DB_NAME="b7web_store"
-
-CONFIG_FILE="/etc/mysql/mariadb.conf.d/50-server.cnf"
-
-# Ajustar bind-address
-if grep -q "^bind-address" "$CONFIG_FILE"; then
-    sed -i 's/^bind-address.*/bind-address = 0.0.0.0/' "$CONFIG_FILE"
-else
-    echo "bind-address = 0.0.0.0" >> "$CONFIG_FILE"
-fi
-
-echo "🚀 Iniciando MariaDB..."
-service mariadb start
-
-until mysqladmin ping -uroot -p'Aa101985$' --silent; do
-  echo "Esperando MariaDB iniciar..."
+# Espera o banco de dados estar disponível
+echo "⏳ Aguardando banco de dados..."
+until nc -z -v -w30 b7web_store_db 3306
+do
+  echo "⚙️  Aguardando conexão com o MySQL..."
   sleep 5
 done
+echo "✅ Banco de dados disponível!"
 
-echo "✔ MariaDB iniciado!"
-
-mysql -uroot -p'Aa101985$' -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;"
-mysql -uroot -p'Aa101985$' -e "CREATE USER IF NOT EXISTS '$DB_USER'@'%' IDENTIFIED BY '$DB_PASS';"
-mysql -uroot -p'Aa101985$' -e "GRANT ALL PRIVILEGES ON *.* TO '$DB_USER'@'%';"
-mysql -uroot -p'Aa101985$' -e "FLUSH PRIVILEGES;"
-
+# Executa migrations e seeders
+echo "🚀 Rodando migrations..."
 php artisan migrate --force
 
-php artisan db:seed
+# Opcional: rodar seed (por exemplo, criar usuário admin)
+php artisan db:seed --force
 
-echo "🚀 Iniciando Laravel na porta 3000..."
-exec php artisan serve --host=0.0.0.0 --port=3000
+# Inicia o servidor (Octane + FrankenPHP)
+echo "🌐 Iniciando Laravel..."
+exec php artisan octane:frankenphp --host=0.0.0.0 --port=80 --watch

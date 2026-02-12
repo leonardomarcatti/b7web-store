@@ -58,17 +58,11 @@
 .my-ad-item {
   border: 1.5px solid #e7e9ed;
   width: 100%;
-  aspect-ratio: 1/1;
   position:  relative;
 }
 
 .ad-image-area .ad-image {
   width: 100%;
-  aspect-ratio: 147/100;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin-bottom: 16px;
 }
 
 .ad-buttons {
@@ -144,6 +138,7 @@
     width: 90%;
     max-width: 350px;
   }
+
   .my-ad-item{
     margin-bottom: 20px;
   }

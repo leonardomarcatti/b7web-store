@@ -23,6 +23,7 @@
    <li>🔄 Migrations e Seeds rodando automaticamente no start</li>
 </ul>
 
+
 <h2>Screenshots</h2>
 <div style="display: flex; flex-flow: row wrap; justify-content: center; gap: 20px;">
 
@@ -47,6 +48,8 @@
   </div>
 
 </div>
+
+<h2>▶️ Screenshots</h2>
 
 <h2>▶️ Como usar</h2>
 <ol>

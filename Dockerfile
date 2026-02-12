@@ -1,30 +1,44 @@
-FROM leonardomarcatti/lamp
+FROM dunglas/frankenphp
 
-RUN apt-get update && apt-get install -y \
-   php-cli php-mbstring php-xml php-bcmath php-curl unzip curl git composer \
-   && apt-get clean \
-   && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
 
-WORKDIR /var/www/html
+# Dependências do sistema
+RUN apt-get update &&  apt upgrade -y && apt-get install -y \
+    libjpeg-dev \
+    libpng-dev \
+    git \
+    unzip \
+    netcat-openbsd \
+    net-tools \
+    iputils-ping \
+    && rm -rf /var/lib/apt/lists/*
 
-COPY . .
+# Extensões PHP necessárias
+RUN install-php-extensions \
+    pdo_mysql \
+    gd \
+    intl \
+    zip \
+    opcache \
+    exif \
+    pcntl \
+    bcmath
 
-# Instala dependências PHP
-RUN composer install --no-dev --optimize-autoloader --no-interaction
+# Instala Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Ajusta permissões das pastas necessárias (ajuste o caminho se for diferente)
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+# Copia o código da aplicação
+COPY . /app
 
-RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
-
-# Copia scripts auxiliares
-COPY wait-for-it.sh /wait-for-it.sh
 COPY start.sh /start.sh
 
-RUN chmod +x /wait-for-it.sh /start.sh
+RUN chmod +x /start.sh
 
-# Expõe portas Laravel (3000) e MariaDB (3305)
-EXPOSE 3000 3305
+# Instala todas as dependências (dev incluídas)
+RUN composer install
 
-# Comando inicial
-CMD ["/start.sh"]
+# Porta interna do container
+
+EXPOSE 80
+
+ENTRYPOINT ["/start.sh"]

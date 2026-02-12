@@ -16,7 +16,7 @@ class UsersSeeder extends Seeder
 
     public function run(): void
     {
-        for ($i = 1; $i <= 54; $i++) {
+        for ($i = 1; $i <= 10; $i++) {
             User::create(['name' => "User $i", 'email' => "user$i@test.com", 'state_id' => StatesModel::pluck('id')->random(), 'password' => 'asd']);
         };
     }

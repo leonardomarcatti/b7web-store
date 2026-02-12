@@ -116,7 +116,6 @@ header {
 main {
     max-width: 1280px;
     margin: auto;
-    min-height: calc(100vh-var(--footerHeight));
 }
 
 #search {
@@ -135,7 +134,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 .hero-area .subtitle {
@@ -147,7 +146,7 @@ main {
 }
 
 .hero-area .title {
-    margin-top: 34px;
+    margin-top: 10px;
     color: #3c4952;
     font-size: 72px;
     font-style: normal;
@@ -156,15 +155,15 @@ main {
 }
 
 .search-area {
-    margin-top: 64px;
-    width: 100%;
+    margin-top: 15px;
+    width:50%;
     display: flex;
     justify-content: space-between;
+    padding: 5px;
 }
 
 .hero-area .search-text {
     width: 38%;
-    aspect-ratio: 6/1;
     color: #96a3ab;
     font-size: 16px;
     font-style: normal;
@@ -210,8 +209,8 @@ main {
 * Categories Area
 */
 .categories-area {
-    margin-top: 128px;
-    width: 100%;
+    margin-top: 30px;
+    width: 90%;
 }
 
 .pill {
@@ -231,8 +230,11 @@ main {
 .my-ad-item {
     border: 1.5px solid #e7e9ed;
     width: 100%;
-    aspect-ratio: 1/1;
     position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
 }
 
 .categories-area .title {
@@ -268,7 +270,7 @@ small {
 .buttons .esportes,
 .buttons .bebes {
     width: 17%;
-    aspect-ratio: 17/5;
+    aspect-ratio: 20/5;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -311,7 +313,7 @@ small {
 */
 
 .ads {
-    margin-top: 76px;
+    margin-top: 20px;
 }
 
 .ads-title {
@@ -332,14 +334,12 @@ small {
 .ad-item {
     border: 1.5px solid #e7e9ed;
     width: 100%;
-    aspect-ratio: 1/1;
     cursor: pointer;
     text-decoration: none;
 }
 
 .ad-item .ad-image {
     width: 100%;
-    aspect-ratio: 147/100;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -357,7 +357,7 @@ small {
 }
 
 .ad-title {
-    width: 90%;
+    width: auto;
     color: #3c4952;
     font-size: 16px;
     font-weight: 400;
@@ -373,7 +373,7 @@ small {
     font-size: 24px;
     font-weight: 600;
     line-height: normal;
-    width: 90%;
+    width: auto;
     margin-left: 5%;
     margin-top: 5px;
     white-space: nowrap;
@@ -395,9 +395,7 @@ small {
 footer {
     max-width: 1280px;
     margin: auto;
-    margin-top: 80px;
     border-top: 1.5px solid #e7e9ed;
-    height: var(--footerHeight);
     display: flex;
     justify-content: space-between;
     align-items: center;
